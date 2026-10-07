@@ -1,90 +1,117 @@
 # GIDEON SI
 
 **GIDEON Super Intelligence**  
-An advanced personal AI system by **PRUDEN AI TECH INDUSTRIES**.
+**PRUDEN AI TECH INDUSTRIES**
 
-> Build the future, but build it for real.
+GIDEON SI is an original personal AI system led by **Jark Pruden**. It is inspired by the futuristic AI-assistant concept represented by Gideon in *The Flash*, but it is not a DC/Warner Bros. product and does not reproduce the fictional system.
 
-## Project lead
+> **BUILD THE FUTURE, BUT BUILD IT FOR REAL.**
 
-**Jark Pruden** — Founder / Project Lead / Final Decision Maker
+## Project ownership
 
-## What is GIDEON SI?
+- **Organization:** PRUDEN AI TECH INDUSTRIES
+- **Project:** GIDEON SI
+- **Full meaning:** GIDEON Super Intelligence
+- **Project lead:** Jark Pruden
+- **Repository:** `jark-zenith/Gideon-SI-`
 
-GIDEON SI is an original male AI assistant designed to combine:
-
-- natural conversation
-- multimodal AI
-- realtime-capable voice
-- user-controlled memory
-- research and knowledge retrieval
-- secure tool use
-- coding and project assistance
-- future device integrations
-
-The project is inspired by the futuristic AI-assistant concept represented by Gideon in *The Flash*, but GIDEON SI is an original PRUDEN AI TECH INDUSTRIES system with its own identity, architecture, interface and voice.
+Jark Pruden is the human founder, project lead and final decision maker.
 
 ## Current status
 
-**Phase 0 — Engineering Foundation**
+**Phase 0 — Architecture & Engineering Foundation**
 
-The repository currently contains the architecture, security model, roadmap, AI-team instructions and architecture decision records. The actual application core is the next implementation stage.
+This repository is deliberately not the finished GIDEON product. The current branch establishes the engineering contracts, security boundary, architecture documentation, decision records, roadmap and a small testable core foundation.
 
-## Repository
+The existing holographic/reference image is preserved and remains the approved visual reference for the future original male GIDEON interface.
 
-`jark-zenith/Gideon-SI-`
+Anything not actually implemented must be described as **PLANNED** or **NOT YET IMPLEMENTED**.
 
-The repository also contains the current holographic GIDEON visual reference asset.
+## Approved technical baseline
 
-## Architecture principles
+1. Push-to-talk voice for the MVP.
+2. Wake word deferred.
+3. Supabase for authentication, PostgreSQL and vector capabilities.
+4. Cascaded STT → LLM → TTS voice pipeline initially.
+5. Realtime speech-to-speech designed as a future pluggable backend.
+6. GitHub read-only repository inspection is the first real tool.
+7. Model providers are accessed through an abstraction layer.
+8. The model proposes actions; it never directly executes tools.
+9. Every tool request passes through policy and permission checks.
+10. Actual tool execution is audit logged.
+11. Sensitive actions require explicit user confirmation.
+12. Provider/API secrets remain server-side.
+13. No fake functionality.
+14. Existing assets are preserved unless deliberate replacement is approved.
 
-1. The model proposes actions; policy decides; tools execute.
-2. Tool execution is permissioned and audit logged.
-3. Provider API keys remain server-side.
-4. External content is treated as untrusted data.
-5. Push-to-talk voice comes before wake-word functionality.
-6. GitHub repository inspection starts read-only.
-7. No feature is described as working unless it actually works.
+## Architecture
 
-## Planned phases
+```
+Client
+  ↓
+GIDEON Gateway
+  ↓
+Authentication / Session
+  ↓
+GIDEON Core
+  ├── Context Manager
+  ├── Memory Service
+  ├── Model Router
+  ├── Tool Runtime
+  ├── Permission Policy
+  ├── Safety Layer
+  └── Audit Logger
+```
 
-1. Foundation
-2. GIDEON Core
-3. Web Application
-4. AI Conversation
-5. Voice
-6. Holographic Interface
-7. Memory
-8. GitHub Tools
-9. Agent Workflows
-10. Android / Desktop
-11. Wake Word
-12. Advanced GIDEON SI
+The client is an untrusted presentation layer. The backend is responsible for identity, provider access, policy enforcement, tool execution and auditability.
 
-See [docs/ROADMAP.md](docs/ROADMAP.md) for the development plan.
+## Repository documentation
 
-## Documentation
-
-- [AI Agent Instructions](AGENTS.md)
+- [AI agent instructions](AGENTS.md)
 - [Architecture](docs/ARCHITECTURE.md)
-- [Security Architecture](docs/SECURITY-ARCHITECTURE.md)
-- [Voice Architecture](docs/VOICE-ARCHITECTURE.md)
-- [Memory Architecture](docs/MEMORY-ARCHITECTURE.md)
-- [Tool Architecture](docs/TOOL-ARCHITECTURE.md)
-- [AI Team](docs/AI-TEAM.md)
+- [Security architecture](docs/SECURITY-ARCHITECTURE.md)
+- [Voice architecture](docs/VOICE-ARCHITECTURE.md)
+- [Memory architecture](docs/MEMORY-ARCHITECTURE.md)
+- [Tool architecture](docs/TOOL-ARCHITECTURE.md)
 - [Roadmap](docs/ROADMAP.md)
-- [Architecture Decisions](docs/DECISIONS/)
+- [AI development team](docs/AI-TEAM.md)
+- [Architecture decisions](docs/DECISIONS/)
 
-## Development team
+## Development commands
 
-- **Jark Pruden** — Human project lead
-- **ChatGPT** — Architecture, research and engineering
-- **Claude** — Architecture, security and code review
-- **Google Gemini** — Multimodal, Android and UI
-- **GitHub / Copilot** — Repository, coding and CI
-- **Render** — Deployment and hosting
-- **Additional AI systems** — Independent review and testing
+The current foundation is TypeScript-only and intentionally has no application runtime yet.
 
-## License
+```bash
+npm install
+npm run typecheck
+npm test
+```
 
-Project licensing will be defined before public distribution.
+Do not add dependencies merely to make the repository look complete.
+
+## Environment variables
+
+Use local environment variables or the deployment platform's secret store. Never commit real credentials.
+
+See [.env.example](.env.example). Provider secrets and Supabase service-role credentials are server-only.
+
+## Engineering rule
+
+**Never silently replace the established architecture.**
+
+If implementation reveals a necessary architectural change, document the reason, alternatives, decision and consequences in an ADR before making the change.
+
+## What is not implemented yet
+
+- production authentication
+- web application
+- production model adapter
+- persistent Supabase memory
+- realtime voice
+- wake word
+- holographic runtime
+- GitHub repository tool
+- autonomous agents
+- Android/Desktop control
+
+Those are roadmap items, not current capabilities.
