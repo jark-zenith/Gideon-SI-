@@ -1,0 +1,15 @@
+{
+  "name": "gideon-si",
+  "private": true,
+  "version": "0.1.0",
+  "description": "GIDEON Super Intelligence — PRUDEN AI TECH INDUSTRIES",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}
