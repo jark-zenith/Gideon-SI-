@@ -1,0 +1,11 @@
+const state={mode:"IDLE",detail:"STANDING BY",response:"GIDEON SI is standing by."};
+const modeValue=document.querySelector("#mode-value"),presenceState=document.querySelector("#presence-state"),presenceDetail=document.querySelector("#presence-detail"),responseText=document.querySelector("#response-text"),talkButton=document.querySelector("#talk-button"),textButton=document.querySelector("#text-button");
+function render(next){Object.assign(state,next);modeValue.textContent=state.mode;presenceState.textContent=state.mode==="IDLE"?"GIDEON SI":state.mode;presenceDetail.textContent=state.detail;responseText.textContent=state.response}
+let listening=false,recognition=null;
+if("SpeechRecognition"in window||"webkitSpeechRecognition"in window){const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;recognition=new Recognition();recognition.continuous=false;recognition.interimResults=false;recognition.lang="en-US";
+recognition.onstart=()=>{listening=true;render({mode:"LISTENING",detail:"MICROPHONE ACTIVE",response:"Listening…"})};
+recognition.onresult=event=>{const transcript=event.results[0][0].transcript.trim();render({mode:"THINKING",detail:"VOICE INPUT CAPTURED",response:transcript?"Received: "+transcript:"No speech detected."})};
+recognition.onerror=()=>{listening=false;render({mode:"IDLE",detail:"STANDING BY",response:"Voice input failed. No AI request was sent."})};
+recognition.onend=()=>{listening=false;if(state.mode==="LISTENING")render({mode:"IDLE",detail:"STANDING BY",response:"GIDEON SI is standing by."})}}
+talkButton.addEventListener("click",()=>{if(!recognition){render({mode:"IDLE",detail:"STT NOT AVAILABLE",response:"Browser speech recognition is unavailable. No remote fallback is configured."});return}if(listening)recognition.stop();else recognition.start()});
+textButton.addEventListener("click",()=>{const message=window.prompt("Message to GIDEON SI:");if(!message?.trim())return;render({mode:"THINKING",detail:"INPUT RECEIVED",response:message.trim()});window.setTimeout(()=>render({mode:"IDLE",detail:"CORE NOT CONNECTED",response:"Input received. GIDEON Core is not connected yet, so no AI response was generated."}),700)});

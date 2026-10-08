@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#030a14" />
+  <title>GIDEON SI — Super Intelligence</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="console" aria-label="GIDEON SI interface">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">G</div>
+        <div><strong>GIDEON SI</strong><span>SUPER INTELLIGENCE</span></div>
+      </div>
+      <div class="status"><i></i><span>ONLINE</span></div>
+    </header>
+    <section class="stage">
+      <aside class="panel panel-left">
+        <span class="eyebrow">IDENTITY</span><h2>GIDEON</h2>
+        <p>Personal artificial intelligence operating interface.</p>
+        <dl>
+          <div><dt>MODE</dt><dd id="mode-value">IDLE</dd></div>
+          <div><dt>VOICE</dt><dd>READY</dd></div>
+          <div><dt>MEMORY</dt><dd>PLANNED</dd></div>
+          <div><dt>TOOLS</dt><dd>READ-ONLY</dd></div>
+        </dl>
+      </aside>
+      <section class="presence" aria-live="polite">
+        <div class="scan-ring ring-one"></div><div class="scan-ring ring-two"></div>
+        <div class="avatar-frame">
+          <div class="scanline"></div>
+          <img class="gideon-reference" src="./assets/gideon-reference.png" alt="GIDEON SI visual reference sheet" />
+          <div class="avatar-glow"></div>
+        </div>
+        <div class="projection-base"><span></span><span></span><span></span></div>
+        <div class="presence-label"><span id="presence-state">GIDEON SI</span><small id="presence-detail">STANDING BY</small></div>
+      </section>
+      <aside class="panel panel-right">
+        <span class="eyebrow">CAPABILITIES</span>
+        <ul>
+          <li><b>01</b> Conversation</li><li><b>02</b> Analysis</li><li><b>03</b> Vision</li>
+          <li><b>04</b> Memory</li><li><b>05</b> Controlled Tools</li>
+        </ul>
+        <div class="notice">REAL SYSTEM MODE<br><span>No simulated tool success.</span></div>
+      </aside>
+    </section>
+    <section class="interaction">
+      <div class="response"><span class="cursor">●</span><span id="response-text">GIDEON SI is standing by.</span></div>
+      <div class="controls">
+        <button id="talk-button" class="primary" type="button"><span>◉</span> PUSH TO TALK</button>
+        <button id="text-button" type="button">TYPE MESSAGE</button>
+      </div>
+    </section>
+    <footer><span>PRUDEN AI TECH INDUSTRIES</span><span>PHASE 1 PRESENCE FOUNDATION · NOT CONNECTED TO AI</span></footer>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
