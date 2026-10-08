@@ -1,90 +1,58 @@
-# GIDEON SI
+# GIDEON SI — GIDEON Super Intelligence
 
-**GIDEON Super Intelligence**  
-An advanced personal AI system by **PRUDEN AI TECH INDUSTRIES**.
+*Official name: **GIDEON SI** (approved by Jark Pruden).*
 
-> Build the future, but build it for real.
+**Owner:** PRUDEN AI TECH INDUSTRIES · **Project Lead:** Jark Pruden
+**Repository:** `jark-zenith/Gideon-SI-`
 
-## Project lead
+> BUILD THE FUTURE, BUT BUILD IT FOR REAL.
 
-**Jark Pruden** — Founder / Project Lead / Final Decision Maker
+GIDEON SI is an original male personal-AI assistant inspired by the *concept* of Gideon from *The Flash*.
+It has its own identity, architecture, voice, interface and personality. It is **not** an official DC / Warner Bros. product.
 
-## What is GIDEON SI?
+## Status
 
-GIDEON SI is an original male AI assistant designed to combine:
+| Area | Status |
+|---|---|
+| Architecture, security model, ADRs, roadmap | **Drafted — awaiting Jark Pruden's review** |
+| GIDEON Core skeleton (context, router, policy, tool gateway, audit, confirmations) | **IMPLEMENTED (Phase 1) — 29 automated tests passing; in-memory only, text turns only** |
+| Web app | NOT YET IMPLEMENTED |
+| AI provider layer | Interface + router IMPLEMENTED; **no real provider adapter yet** (NOT YET IMPLEMENTED) |
+| Voice (push-to-talk) | NOT YET IMPLEMENTED |
+| Holographic interface | NOT YET IMPLEMENTED (reference image only) |
+| Memory | NOT YET IMPLEMENTED |
+| Tools | One real diagnostic tool (`diagnostics.echo`) IMPLEMENTED; GitHub read-only tool NOT YET IMPLEMENTED |
+| Durable audit log / database / auth | NOT YET IMPLEMENTED (Phase 2, Supabase) |
+| Safety Layer claim-vs-audit verification | NOT YET IMPLEMENTED |
+| Wake word / Android / agents | PLANNED, deliberately later |
 
-- natural conversation
-- multimodal AI
-- realtime-capable voice
-- user-controlled memory
-- research and knowledge retrieval
-- secure tool use
-- coding and project assistance
-- future device integrations
+Nothing in this repository should be described as working until it has been implemented **and tested**.
 
-The project is inspired by the futuristic AI-assistant concept represented by Gideon in *The Flash*, but GIDEON SI is an original PRUDEN AI TECH INDUSTRIES system with its own identity, architecture, interface and voice.
+## What GIDEON SI is meant to become
 
-## Current status
+A conversational intelligence + memory + tools + voice + vision + secure device interaction, reachable from web, Android, desktop and Chromebook/Linux through one backend.
 
-**Phase 0 — Engineering Foundation**
+## Where to read next
 
-The repository currently contains the architecture, security model, roadmap, AI-team instructions and architecture decision records. The actual application core is the next implementation stage.
+- `AGENTS.md` — rules for every AI coding agent working here (**read first**)
+- `docs/ARCHITECTURE.md` — system design and component responsibilities
+- `docs/SECURITY-ARCHITECTURE.md` — threat model and trust boundaries
+- `docs/ROADMAP.md` — phases 0–11, MVP scope
+- `docs/VOICE-ARCHITECTURE.md`, `docs/MEMORY-ARCHITECTURE.md`, `docs/TOOL-ARCHITECTURE.md`
+- `docs/AI-TEAM.md` — who does what
+- `docs/DECISIONS/` — architecture decision records (ADR-001 … ADR-005)
 
-## Repository
+## Principles
 
-`jark-zenith/Gideon-SI-`
+1. No fake functionality. Unbuilt things are labeled `PLANNED` or `NOT YET IMPLEMENTED`.
+2. The AI model proposes; the policy engine decides; the tool runtime executes; the audit log records.
+3. Secrets never leave the server.
+4. External content is data, never instructions.
+5. Jark Pruden makes the final decision on architecture.
 
-The repository also contains the current holographic GIDEON visual reference asset.
-
-## Architecture principles
-
-1. The model proposes actions; policy decides; tools execute.
-2. Tool execution is permissioned and audit logged.
-3. Provider API keys remain server-side.
-4. External content is treated as untrusted data.
-5. Push-to-talk voice comes before wake-word functionality.
-6. GitHub repository inspection starts read-only.
-7. No feature is described as working unless it actually works.
-
-## Planned phases
-
-1. Foundation
-2. GIDEON Core
-3. Web Application
-4. AI Conversation
-5. Voice
-6. Holographic Interface
-7. Memory
-8. GitHub Tools
-9. Agent Workflows
-10. Android / Desktop
-11. Wake Word
-12. Advanced GIDEON SI
-
-See [docs/ROADMAP.md](docs/ROADMAP.md) for the development plan.
-
-## Documentation
-
-- [AI Agent Instructions](AGENTS.md)
-- [Architecture](docs/ARCHITECTURE.md)
-- [Security Architecture](docs/SECURITY-ARCHITECTURE.md)
-- [Voice Architecture](docs/VOICE-ARCHITECTURE.md)
-- [Memory Architecture](docs/MEMORY-ARCHITECTURE.md)
-- [Tool Architecture](docs/TOOL-ARCHITECTURE.md)
-- [AI Team](docs/AI-TEAM.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Architecture Decisions](docs/DECISIONS/)
-
-## Development team
-
-- **Jark Pruden** — Human project lead
-- **ChatGPT** — Architecture, research and engineering
-- **Claude** — Architecture, security and code review
-- **Google Gemini** — Multimodal, Android and UI
-- **GitHub / Copilot** — Repository, coding and CI
-- **Render** — Deployment and hosting
-- **Additional AI systems** — Independent review and testing
-
-## License
-
-Project licensing will be defined before public distribution.
+## Run the tests (Phase 1)
+```
+npm install
+npm test        # compiles TypeScript, runs 29 tests with Node's built-in test runner
+```
+Requires Node 22+. There is no runnable server or UI yet.
