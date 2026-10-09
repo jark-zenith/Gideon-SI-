@@ -6,3 +6,6 @@
 .scene-nebula .holo-stage{background:linear-gradient(90deg,#03071166,#03071122),url('/scenes/nebula.svg') center/cover no-repeat}
 .scene-orbit .holo-stage{background:linear-gradient(90deg,#03071155,#03071122),url('/scenes/orbit.svg') center/cover no-repeat}
 .scene-deck .holo-stage{background:linear-gradient(90deg,#03071188,#03071144),url('/scenes/deck.svg') center/cover no-repeat}
+
+/* Uploaded outfit images replace the CSS mannequin when registered in outfits/manifest.json. */
+.holo-outfit-image{position:relative;z-index:1;display:block;width:min(78%,330px);height:90%;object-fit:contain;filter:drop-shadow(0 0 18px #43cfff78);animation:float 5s ease-in-out infinite;}
