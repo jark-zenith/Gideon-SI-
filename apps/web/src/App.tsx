@@ -1,18 +1,20 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 
 type Mood = "idle" | "listening" | "speaking";
-type Look = "official" | "casual" | "lab" | "outing" | "gaming";
-type Scene = "deep-space" | "nebula" | "orbit" | "deck";
+type Look = string;
+type Scene = string;
+type LookOption = { id: Look; label: string; detail: string; mark: string; src?: string };
+type SceneOption = { id: Scene; label: string; subtitle: string; src?: string };
 type Message = { from: "you" | "gideon"; text: string };
 
-const looks: { id: Look; label: string; detail: string; mark: string }[] = [
+const defaultLooks: LookOption[] = [
   { id: "official", label: "Official", detail: "Presentation mode", mark: "◆" },
   { id: "casual", label: "Casual", detail: "Everyday mode", mark: "◈" },
   { id: "lab", label: "Lab", detail: "Research mode", mark: "⌬" },
   { id: "outing", label: "Outing", detail: "Social mode", mark: "✦" },
   { id: "gaming", label: "Gaming", detail: "Entertainment mode", mark: "▦" }
 ];
-const scenes: { id: Scene; label: string; subtitle: string }[] = [
+const defaultScenes: SceneOption[] = [
   { id: "deep-space", label: "Deep Space", subtitle: "Original void" },
   { id: "nebula", label: "Nebula Drift", subtitle: "Blue nebula field" },
   { id: "orbit", label: "Night Orbit", subtitle: "Planetary horizon" },
@@ -23,6 +25,23 @@ export default function App() {
   const [mood, setMood] = useState<Mood>("idle");
   const [look, setLook] = useState<Look>("official");
   const [scene, setScene] = useState<Scene>("deep-space");
+  const [looks, setLooks] = useState<LookOption[]>(defaultLooks);
+  const [scenes, setScenes] = useState<SceneOption[]>(defaultScenes);
+
+  useEffect(() => {
+    let active = true;
+    void fetch("/backgrounds/manifest.json").then((response) => response.ok ? response.json() : Promise.reject(new Error("Background manifest unavailable"))).then((data: { items?: SceneOption[] }) => {
+      if (!active || !Array.isArray(data.items)) return;
+      const additions = data.items.filter((item) => item && typeof item.id === "string" && typeof item.label === "string" && typeof item.src === "string");
+      setScenes([...defaultScenes, ...additions.filter((item) => !defaultScenes.some((base) => base.id === item.id))]);
+    }).catch(() => undefined);
+    void fetch("/outfits/manifest.json").then((response) => response.ok ? response.json() : Promise.reject(new Error("Outfit manifest unavailable"))).then((data: { items?: LookOption[] }) => {
+      if (!active || !Array.isArray(data.items)) return;
+      const additions = data.items.filter((item) => item && typeof item.id === "string" && typeof item.label === "string" && typeof item.src === "string");
+      setLooks([...defaultLooks, ...additions.filter((item) => !defaultLooks.some((base) => base.id === item.id))]);
+    }).catch(() => undefined);
+    return () => { active = false; };
+  }, []);
   const [chatOpen, setChatOpen] = useState(false);
   const [command, setCommand] = useState("");
   const [messages, setMessages] = useState<Message[]>([
@@ -79,9 +98,9 @@ export default function App() {
       </div>
       <div className="holo-column">
         <div className="holo-caption"><span>FIG. 01 / GIDEON</span><span>PROJECTION FIELD</span></div>
-        <div className="holo-stage" data-mood={mood} aria-label={`GIDEON hologram visualization, ${mood}`}>
+        <div className="holo-stage" data-mood={mood} aria-label={`GIDEON hologram visualization, ${mood}`} style={currentScene.src ? { backgroundImage: 'linear-gradient(90deg, rgba(3,7,17,.50), rgba(3,7,17,.15)), url("' + currentScene.src + '")', backgroundSize: "cover", backgroundPosition: "center" } : undefined}>
           <div className="holo-orbit orbit-one" /><div className="holo-orbit orbit-two" /><div className="holo-aura" />
-          <div className="holo-silhouette"><div className="holo-head"><span className="eye eye-left" /><span className="eye eye-right" /></div><div className="holo-neck" /><div className="holo-shoulders" /><div className="holo-chest"><span className="chest-core" /></div><div className="holo-lines" /></div>
+          {currentLook.src ? <img className="holo-outfit-image" src={currentLook.src} alt={`${currentLook.label} hologram look`} /> : <div className="holo-silhouette"><div className="holo-head"><span className="eye eye-left" /><span className="eye eye-right" /></div><div className="holo-neck" /><div className="holo-shoulders" /><div className="holo-chest"><span className="chest-core" /></div><div className="holo-lines" /></div>}
           <div className="holo-ring ring-one" /><div className="holo-ring ring-two" /><div className="holo-floor" /><div className="scanlines" />
           <div className="holo-label label-left">NEURAL<br />MATRIX <b>98.4%</b></div><div className="holo-label label-right">SYNC<br /><b>{mood === "listening" ? "INBOUND" : mood === "speaking" ? "OUTBOUND" : "STANDBY"}</b></div>
           <div className="holo-state"><span className="status-dot" /> {mood.toUpperCase()} <span className="state-bars"><i /><i /><i /><i /><i /></span></div>
