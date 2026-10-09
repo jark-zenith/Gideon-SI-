@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 
 type Mood = "idle" | "listening" | "speaking";
 type Look = "official" | "casual" | "lab" | "outing" | "gaming";
@@ -31,7 +31,7 @@ export default function App() {
   const currentLook = useMemo(() => looks.find((item) => item.id === look) ?? looks[0], [look]);
   const currentScene = useMemo(() => scenes.find((item) => item.id === scene) ?? scenes[0], [scene]);
 
-  function sendCommand(event: React.FormEvent<HTMLFormElement>) {
+  function sendCommand(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const text = command.trim();
     if (!text) return;
