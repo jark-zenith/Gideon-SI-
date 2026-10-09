@@ -14,7 +14,8 @@ npm run build
 - Responsive hologram visualization and animated visual states.
 - Local appearance and environment selectors.
 - Four versioned SVG environment assets under `public/scenes`.
-- Floating text console for local demonstration commands.
+- Upload-ready `public/backgrounds/` and `public/outfits/` folders, each with a `manifest.json` and instructions. Add an image and register it in the matching manifest to make it selectable on the homepage.
+- Floating text console for local demonstration commands; registered background and outfit names can be selected by natural-language-like local commands.
 - Typed browser transport contract at `src/lib/assistant-transport.ts` for a future same-origin server API.
 
 ## Integration status and security
