@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
+import AvatarModelLoader from "./AvatarModelLoader";
 
 type Mood = "idle" | "listening" | "speaking";
 type Look = string;
@@ -116,6 +117,8 @@ export default function App() {
       <div className="scene-list">{scenes.map((item, index) => <button key={item.id} className={`scene-option ${scene === item.id ? "selected" : ""}`} onClick={() => setScene(item.id)}><span className={`scene-thumb thumb-${item.id}`}><i /></span><span><strong>{item.label}</strong><small>{item.subtitle}</small></span>{scene === item.id && <b>●</b>}{index === 0 && <span className="scene-current">DEFAULT</span>}</button>)}</div>
       <div className="dock-footer"><span><i className="status-dot" /> INTERFACE CONTROLS ONLINE</span><span>VOICE PROVIDER <b>PLANNED</b></span><span>POLICY GATE <b>UNTOUCHED</b></span></div>
     </section>
+
+    <AvatarModelLoader />
 
     <footer className="footer"><span>GIDEON SI <b>·</b> PRUDEN AI TECH INDUSTRIES</span><span>VISUAL PROTOTYPE <b>—</b> VOICE INTEGRATION DEFERRED</span></footer>
 
