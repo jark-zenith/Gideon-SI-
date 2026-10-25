@@ -24,3 +24,10 @@ The text console currently changes local UI state only. The HTTP transport is an
 Never accept user identity, trusted scopes, or confirmation decisions from browser-supplied fields. All tool proposals must pass through the existing `ToolGateway`, policy, confirmation, and audit path. Do not call tools directly from the UI.
 
 Gemini / Google AI Studio, microphone capture, speech-to-text, and text-to-speech are intentionally not connected in this migration. No provider key belongs in `VITE_*` variables or client code.
+
+
+## Custom 3D avatar workshop
+
+The interface includes a local GLB preview panel. Use **Load 3D Model** to preview an existing .glb file with orbit controls. The model is loaded locally in the current browser session and is not uploaded to a server. The renderer is loaded from the Google model-viewer CDN, so an internet connection is required for this panel.
+
+A personalized face model still needs to be created from an authorized reference photo and exported as GLB. A regular photo is not a 3D model. The workshop does not claim to generate a face model from a photograph.
