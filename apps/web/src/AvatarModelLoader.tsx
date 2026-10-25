@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ChangeEvent } from "react";
 
 type ModelViewerElement = HTMLElement & { src: string; cameraControls: boolean; autoRotate: boolean };
 
@@ -28,7 +28,7 @@ export default function AvatarModelLoader() {
     return () => { viewer.remove(); };
   }, [modelUrl]);
 
-  function loadModel(event: React.ChangeEvent<HTMLInputElement>) {
+  function loadModel(event: ChangeEvent<HTMLInputElement>) {
     const file = event.currentTarget.files?.[0];
     if (!file) return;
     if (!/\.glb$/i.test(file.name) && file.type !== "model/gltf-binary") {
