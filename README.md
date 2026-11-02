@@ -16,10 +16,10 @@ It has its own identity, architecture, voice, interface and personality. It is *
 |---|---|
 | Architecture, security model, ADRs, roadmap | **Drafted — awaiting Jark Pruden's review** |
 | GIDEON Core skeleton (context, router, policy, tool gateway, audit, confirmations) | **IMPLEMENTED (Phase 1) — 29 automated tests passing; in-memory only, text turns only** |
-| Web app | NOT YET IMPLEMENTED |
+| Web app | IMPLEMENTED (React/Vite UI shell + local GLB preview; server API not connected) |
 | AI provider layer | Interface + router IMPLEMENTED; **no real provider adapter yet** (NOT YET IMPLEMENTED) |
 | Voice (push-to-talk) | NOT YET IMPLEMENTED |
-| Holographic interface | NOT YET IMPLEMENTED (reference image only) |
+| Holographic interface | IMPLEMENTED (responsive CSS hologram shell + local GLB preview; personalized face model still required) |
 | Memory | NOT YET IMPLEMENTED |
 | Tools | One real diagnostic tool (`diagnostics.echo`) IMPLEMENTED; GitHub read-only tool NOT YET IMPLEMENTED |
 | Durable audit log / database / auth | NOT YET IMPLEMENTED (Phase 2, Supabase) |
@@ -55,4 +55,18 @@ A conversational intelligence + memory + tools + voice + vision + secure device 
 npm install
 npm test        # compiles TypeScript, runs 29 tests with Node's built-in test runner
 ```
-Requires Node 22+. There is no runnable server or UI yet.
+Requires Node 22+. The React/Vite web UI is runnable separately from the core library. The server API, real model provider, voice services, and personalized face model are not yet connected.
+
+
+## Run the web interface
+
+```sh
+cd apps/web
+npm install
+npm run dev
+npm run build
+```
+
+The UI currently includes local scene/look controls and a local GLB avatar preview. The text console is still a local demonstration; it is not a real AI conversation. The GLB preview requires the model-viewer CDN and an existing .glb model file. A personalized face model must still be created from an authorized reference photo.
+
+Implementation plan: `docs/HACKATHON-IMPLEMENTATION-PLAN.md`.
